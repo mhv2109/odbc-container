@@ -1,0 +1,9 @@
+ODBC: "/etc/odbc.ini"
+ODBCINST: "/etc/odbcinst.ini"
+
+ODBCINST_TEMPLATE: "/src/templates/odbcinst.ini.j2"
+ODBC_TEMPLATE: "/src/templates/odbc.ini.j2"
+
+odbc_packages:
+    - unixodbc
+    - unixodbc-dev

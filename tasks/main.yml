@@ -1,0 +1,18 @@
+- name: Install packages required for ODBC
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ odbc_packages }}"
+
+- name: Write custom ODBC driver configuration
+  template:
+    src: "{{ ODBCINST_TEMPLATE }}"
+    dest: "{{ ODBCINST }}"
+    mode: 0644
+
+- name: Write custom ODBC DSN listing
+  template:
+    src: "{{ ODBC_TEMPLATE }}"
+    dest: "{{ ODBC }}"
+    mode: 0644
