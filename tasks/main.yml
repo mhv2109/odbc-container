@@ -1,3 +1,7 @@
+- include_vars: "/src/{{ item }}"
+  with_items: "{{ var_files }}"
+  when: var_files is defined and var_files
+
 - name: Install packages required for ODBC
   apt:
     update_cache: yes
