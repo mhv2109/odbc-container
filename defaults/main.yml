@@ -1,3 +1,5 @@
+ODBC_USER: root
+
 ODBC: "/etc/odbc.ini"
 ODBCINST: "/etc/odbcinst.ini"
 
