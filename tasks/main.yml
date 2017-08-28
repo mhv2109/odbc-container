@@ -1,22 +1,25 @@
-- include_vars: "/src/{{ item }}"
-  with_items: "{{ var_files }}"
-  when: var_files is defined and var_files
-
 - name: Install packages required for ODBC
   apt:
     update_cache: yes
     name: "{{ item }}"
     state: installed
-  with_items: "{{ odbc_packages }}"
+  with_items: "{{ apt_odbc_packages }}"
+
+- name: Install packages required for ODBC
+  yum:
+    update_cache: yes
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ apt_odbc_packages }}"
 
 - name: Write custom ODBC driver configuration
   template:
     src: "{{ ODBCINST_TEMPLATE }}"
-    dest: "{{ ODBCINST }}"
+    dest: "{{ ODBCINSTPATH }}"
     mode: 0644
 
 - name: Write custom ODBC DSN listing
   template:
     src: "{{ ODBC_TEMPLATE }}"
-    dest: "{{ ODBC }}"
+    dest: "{{ ODBCINI }}"
     mode: 0644

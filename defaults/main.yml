@@ -1,11 +1,17 @@
 ODBC_USER: root
 
-ODBC: "/etc/odbc.ini"
-ODBCINST: "/etc/odbcinst.ini"
+ODBCSYSINI: "/etc"
+ODBCINI: "{{ ODBCSYSINI }}/odbc.ini"
+ODBCINST: "odbcinst.ini"
+ODBCINSTPATH: "{{ ODBCSYSINI }}/{{ ODBCINST }}"
 
 ODBCINST_TEMPLATE: "/src/templates/odbcinst.ini.j2"
 ODBC_TEMPLATE: "/src/templates/odbc.ini.j2"
 
-odbc_packages:
+apt_odbc_packages:
     - unixodbc
     - unixodbc-dev
+
+yum_odbc_packages:
+    - unixodbc
+    - unixodbc-devel
